@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Leases.Data.Entities
 {
@@ -51,6 +52,18 @@ namespace Leases.Data.Entities
         public ICollection<Contract> Contracts { get; set; }
 
 
+        public string FirstImage
+        {
+            get
+            {
+                if (PropertyImages == null || PropertyImages.Count == 0)
+                {
+                    return "https://myleasing.azurewebsites.net/images/Properties/noImage.png";
+                }
+
+                return PropertyImages.FirstOrDefault().ImageUrl;
+            }
+        }
     }
 
 }
